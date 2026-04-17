@@ -1,46 +1,42 @@
 #include <iostream>
 #include <cmath>
-using namespace std;
 int main()
 {
     //широта и высота 
-    int width = 30;
-    int height = 120;
+    const int width = 120;
+    const int height = 30;
+
+    //размер символов в пикселях 
+    const float pixelasets = 11.0f / 24.0f;
+    
     //переменная для хранения символов - пикселей
-    char win [width][height];
+    char* win = new char[width * height + 1];
+    win[width * height] = '\0';
     
         for (int i = 0; i < width; i++)
         {
-            for(int j = 0; j < (height - 1)/2; j++)
+            for(int j = 0; j < height; j++)
             {  
-                char pixel = '@';
-                win[i][j] = pixel;
-                //cout<<win[i][j]<<" ";
-                //нахождение строки
                 
-                if (i == 29)
-                {
-                    cout<<win[i][j]<<" ";
-                }
-                else
-                {
-                    cout<<" ";
-                }
-                //нахождение столбца
+                float x = (float)i / width * 2.0f - 1.0f;
+                float y = (float)j / height * 2.0f - 1.0f;
+                //выравнивание к соотнашению 1 к 1
+                float aspect = (float)width / height;
+                x *= aspect * pixelasets;
+                //прямоугольник
+                char pixel = ' ';
+                if(x * x <= 0.5) pixel = '#';            
+                win[i + j * width] = pixel;    
+                //круг
                 /*
-                if (j == 4)
-                {
-                    cout<<win[i][j]<<" ";
-                }
-                else
-                {
-                    cout<<" ";
-                }
+                if(x * x + y * y < 0.5) pixel = '@';
+                win[i + j * width] = pixel;
                 */
-                
-            } 
-            cout<<endl;
+            }
         }
+
+    printf(win);
+    getchar();
     system("pause>nul");
     return 0;
 }
