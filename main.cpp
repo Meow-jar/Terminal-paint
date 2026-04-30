@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 int main()
 {
     //широта и высота 
@@ -25,18 +24,18 @@ int main()
                 x *= aspect * pixelasets;
                 //прямоугольник
                 char pixel = ' ';
-                if(x * x <= 0.5) pixel = '#';            
+                if(x * x <= 0.5) pixel = '@';            
                 win[i + j * width] = pixel;    
                 //круг
                 /*
-                if(x * x + y * y < 0.5) pixel = '@';
+                if(x * x + y * y > 0.7) pixel = '@';
                 win[i + j * width] = pixel;
                 */
             }
         }
 
     printf(win);
-    getchar();
-    system("pause>nul");
+    delete [] win;
+    std::cin.get();
     return 0;
 }
