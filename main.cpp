@@ -8,12 +8,11 @@ const int height = 30;
 const float pixelasets = 11.0f / 24.0f;
     
 //функция для вывода круга
-float circle(float& x, float& y, int& i, int& j,char* win)
+void circle(float& x, float& y, int& i, int& j,char* win)
 {
     char pixel = ' ';
     if(x * x + y * y < 0.7) pixel = '@';
     win[i + j * width] = pixel; 
-    return 0;
 }
 
 int main()
